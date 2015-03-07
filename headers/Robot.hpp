@@ -10,14 +10,20 @@ namespace robot {
             /** Move the robot. */
             void move(float distance_forward, float turn);
 
+            /** Turn on itself. */
+            void turn(float turn);
+
             /** Stop everything. */
             void stop(void);
+
+            /** Look at the specified point. */
+            void lookAt(void);
         protected:
         private:
             config::Config;
 
-            servo::ContinuousServo wheel_left_;
-            servo::ContinuousServo wheel_right_;
+            servo::ContinuousServo left_wheel_;
+            servo::ContinuousServo right_wheel_;
 
             servo::StandardServo camera_holder_;
     }

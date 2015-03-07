@@ -1,0 +1,3 @@
+[submodule "includes/INIReader"]
+	path = includes/INIReader
+	url = https://github.com/OSSystems/inih

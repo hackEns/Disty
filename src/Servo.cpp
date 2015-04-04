@@ -22,7 +22,9 @@ namespace servo {
 
 
     StandardServo::StandardServo(const int pin, const int min_value, int max_value, bool is_hard_pwm)
-        : Servo(pin), position_(0), min_value_(min_value), max_value_(max_value), is_hard_pwm_(is_hard_pwm) {
+        : Servo(pin), position_(0), min_value_(min_value), max_value_(max_value), is_hard_pwm_(is_hard_pwm)
+    {
+        // Empty on purpose
     }
 
 
@@ -45,7 +47,9 @@ namespace servo {
 
 
     ContinuousServo::ContinuousServo(const int pin, const int stop_value, const int full_forward_value, const bool is_hard_pwm)
-        : Servo(pin), speed_(0), stop_value_(stop_value), full_forward_value_(full_forward_value), is_hard_pwm_(is_hard_pwm) {
+        : Servo(pin), speed_(0), stop_value_(stop_value), full_forward_value_(full_forward_value), is_hard_pwm_(is_hard_pwm)
+    {
+        // Empty on purpose
     }
 
 
@@ -61,7 +65,7 @@ namespace servo {
         else if (speed < -1.) {
             speed = -1.;
         }
-        float value = (full_forward_value - stop_value) * speed;
+        int value = static_cast<int>((full_forward_value - stop_value) * speed);
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
         } else {

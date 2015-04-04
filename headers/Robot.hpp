@@ -1,5 +1,6 @@
-#include "Servo.hpp"
 #include "Config.hpp"
+#include "Servo.hpp"
+#include "UDPServer.hpp"
 
 namespace robot {
     class Robot {
@@ -8,23 +9,28 @@ namespace robot {
             Robot(void);
 
             /** Move the robot. */
-            void move(float distance_forward, float turn);
+            void move(const float distance_forward, const float turn);
 
             /** Turn on itself. */
-            void turn(float turn);
+            void turn(const float turn);
 
-            /** Stop everything. */
+            /** Stop moving. */
             void stop(void);
 
             /** Look at the specified point. */
             void lookAt(void);
-        protected:
-        private:
-            config::Config;
 
+            /** Stop main loop. */
+            void stopServer(void);
+
+            /** Listen for and handle the commands received through the UDPServer. */
+            void listen(void);
+        private:
             servo::ContinuousServo left_wheel_;
             servo::ContinuousServo right_wheel_;
 
             servo::StandardServo camera_holder_;
-    }
+
+            udpserver::UDPServer server_;
+    };
 }

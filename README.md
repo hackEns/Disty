@@ -11,5 +11,6 @@ This repo contains all the drawings and code we used to make it work.
 ## Build the software
 
 * Checkout this Git repository: `git checkout https://git.eleves.ens.fr/hackens/Disty.git`
-* Init submodules: `git submodule init && git submodule update`
-* **TODO**
+* Create a `build` directory in the project root.
+* Use CMake to generate Makefiles: `cd build; cmake ..`
+* Makethe code: `make`

@@ -1,4 +1,3 @@
-#include "Config.hpp"
 #include "Servo.hpp"
 #include "UDPServer.hpp"
 
@@ -19,9 +18,6 @@ namespace robot {
 
             /** Look at the specified point. */
             void lookAt(void);
-
-            /** Stop main loop. */
-            void stopServer(void);
 
             /** Listen for and handle the commands received through the UDPServer. */
             void listen(void);

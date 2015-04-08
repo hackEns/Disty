@@ -1,6 +1,7 @@
 #include "Robot.hpp"
 
 #include <csignal>
+#include <iostream>
 
 #include "constants.hpp"
 
@@ -22,7 +23,7 @@ namespace robot {
                 constants::STANDARD_SERVO_MIN_VALUE,
                 constants::STANDARD_SERVO_MAX_VALUE,
                 constants::CAMERA_HOLDER_IS_HARD_PWM),
-        server_(constants::LISTENING_PORT);
+        server_(constants::LISTENING_PORT)
     {
         // Empty on purpose
     }
@@ -40,10 +41,6 @@ namespace robot {
         // TODO
     }
 
-    void Robot::stopServer(void) {
-        server_.stop();
-    }
-
     void Robot::listen(void) {
         std::string command = server_.poll();
 
@@ -55,23 +52,16 @@ namespace robot {
         std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
         // TODO
-        switch (command) {
-            case "FORWARD":
-                break;
-
-            case "BACKWARD":
-                break;
-
-            case "STOP":
-                stop();
-                break;
-
-            case "KILL":
-                // Stop the server
-                stopServer();
-                // Raise SIGINT, catched by the main thread, to exit the loop in the main thread
-                std::raise(SIGINT);
-                break;
+        if ("FORWARD" == command) {
+        }
+        else if ("BACKWARD" == command) {
+        }
+        else if ("STOP" == command) {
+            stop();
+        }
+        else if ("KILL" == command) {
+            // Raise SIGINT, catched by the main thread, to exit the loop in the main thread
+            std::raise(SIGINT);
         }
     }
 }

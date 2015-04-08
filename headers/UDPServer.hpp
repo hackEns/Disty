@@ -1,3 +1,5 @@
+#include <string>
+
 namespace udpserver {
     const int BUFFER_LENGTH = 1024;
 
@@ -8,7 +10,7 @@ namespace udpserver {
         ~UDPServer(void);
 
         /** Poll for new packets. Return a char* if data is found, NULL otherwise. */
-        char* poll(void);
+        std::string poll(void);
     private:
         int port_;
         int sock_;

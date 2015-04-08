@@ -1,13 +1,19 @@
+#include <stdexcept>
 #include <wiringPi.h>
 #include <softPwm.h>
 
 #include "Servo.hpp"
+#include "utilities.hpp"
 
 
 namespace servo {
-    Servo::Servo(const int pin) : pin_(pin) {
-        if (0 != softPwmCreate(pin, 0, range_)) {
-            throw std::runtime_error("Unable to initialize Servo.");
+    Servo::Servo(const int pin, const bool is_hard_pwm)
+        : pin_(pin), range_(HARD_PWM_RANGE), is_hard_pwm_(is_hard_pwm) {
+        if (is_hard_pwm) {
+            if (0 != softPwmCreate(pin, 0, range_)) {
+                throw std::runtime_error("Unable to initialize Servo.");
+            }
+            range_ = DEFAULT_RANGE_SOFT_PWM;
         }
     }
 
@@ -16,13 +22,13 @@ namespace servo {
     }
 
 
-    int Servo::getPin(void) {
+    int Servo::getPin(void) const {
         return pin_;
     }
 
 
-    StandardServo::StandardServo(const int pin, const int min_value, int max_value, bool is_hard_pwm)
-        : Servo(pin), position_(0), min_value_(min_value), max_value_(max_value), is_hard_pwm_(is_hard_pwm)
+    StandardServo::StandardServo(const int pin, const int min_angle, int max_angle, bool is_hard_pwm)
+        : Servo(pin, is_hard_pwm), position_(0), min_angle_(min_angle), max_angle_(max_angle)
     {
         // Empty on purpose
     }
@@ -33,9 +39,13 @@ namespace servo {
     }
 
 
-    void StandardServo::move(const int position) {
-        int value = (position - min_value) / (max_value - min_value) * 100;
-
+    void StandardServo::setPosition(const int position) {
+        const int value = static_cast<int>(utilities::clamp(
+                ((position - min_angle_) /
+                 (max_angle_ - min_angle_) *
+                 range_),
+                0,
+                range_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
         } else {
@@ -47,7 +57,7 @@ namespace servo {
 
 
     ContinuousServo::ContinuousServo(const int pin, const int stop_value, const int full_forward_value, const bool is_hard_pwm)
-        : Servo(pin), speed_(0), stop_value_(stop_value), full_forward_value_(full_forward_value), is_hard_pwm_(is_hard_pwm)
+        : Servo(pin, is_hard_pwm), speed_(0), stop_value_(stop_value), full_forward_value_(full_forward_value)
     {
         // Empty on purpose
     }
@@ -58,14 +68,11 @@ namespace servo {
     }
 
 
-    void ContinuousServo::setSpeed(const float speed) {
-        if (speed > 1.) {
-            speed = 1.;
-        }
-        else if (speed < -1.) {
-            speed = -1.;
-        }
-        int value = static_cast<int>((full_forward_value - stop_value) * speed);
+    void ContinuousServo::setSpeed(float speed) {
+        speed = utilities::clamp(speed, -1, 1);
+        int value = static_cast<int>(
+                stop_value_ +
+                speed * (full_forward_value_ - stop_value_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
         } else {
@@ -73,4 +80,4 @@ namespace servo {
         }
         speed_ = speed;
     }
-}
+}  // namespace servo

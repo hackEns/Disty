@@ -1,5 +1,5 @@
 #include <csignal>
-#include <unistd.h>
+#include <cstdlib>
 #include <wiringPi.h>
 
 #include "Robot.hpp"

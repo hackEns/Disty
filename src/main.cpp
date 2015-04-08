@@ -4,13 +4,8 @@
 
 #include "Robot.hpp"
 
-namespace {
-    volatile std::atomic<bool> running;
-}
-
-
 void exitHandler(int signal) {
-    running = false;
+    exit(EXIT_SUCCESS);
 }
 
 
@@ -19,12 +14,11 @@ int main(void) {
     wiringPiSetup();
 
     // Handle ^C signal
-    running = true;
     std::signal(SIGINT, exitHandler);
 
     robot::Robot disty;
 
-    while (running) {
+    while (true) {
         // Poll commands
         disty.listen();
     }

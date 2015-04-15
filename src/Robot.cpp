@@ -36,7 +36,7 @@ namespace robot {
     }
 
     void Robot::move(const float speed) {
-        left_wheel_.setSpeed(speed);
+        left_wheel_.setSpeed(-speed);
         right_wheel_.setSpeed(speed);
     }
 

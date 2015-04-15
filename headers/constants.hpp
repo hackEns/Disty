@@ -7,7 +7,7 @@ namespace constants {
 
     const int LEFT_WHEEL_PIN = 18;  // Broadcom numbering
     const bool LEFT_WHEEL_IS_HARD_PWM = true;
-    const int RIGHT_WHEEL_PIN = -1;  // TODO
+    const int RIGHT_WHEEL_PIN = 13;  // Broadcom numbering
     const bool RIGHT_WHEEL_IS_HARD_PWM = true;
     const int CAMERA_HOLDER_PIN = -1;  // TODO
     const bool CAMERA_HOLDER_IS_HARD_PWM = false;

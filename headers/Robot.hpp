@@ -7,11 +7,11 @@ namespace robot {
             /** Construct a Robot object. */
             Robot(void);
 
-            /** Move the robot. */
-            void move(const float distance_forward, const float turn);
+            /** Stop the robot on object destruction. */
+            ~Robot(void);
 
-            /** Turn on itself. */
-            void turn(const float turn);
+            /** Move the robot. */
+            void move(const float speed);
 
             /** Stop moving. */
             void stop(void);

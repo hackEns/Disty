@@ -9,12 +9,24 @@
 namespace servo {
     Servo::Servo(const int pin, const bool is_hard_pwm)
         : pin_(pin), range_(HARD_PWM_RANGE), is_hard_pwm_(is_hard_pwm) {
-        if (is_hard_pwm) {
+        if (!is_hard_pwm) {
             if (0 != softPwmCreate(pin, 0, range_)) {
                 throw std::runtime_error("Unable to initialize Servo.");
             }
             range_ = DEFAULT_RANGE_SOFT_PWM;
         }
+        else {
+            // Set pin as PWM pin
+            pinMode(pin, PWM_OUTPUT);
+
+            // Set PWM correctly
+            // Set the PWM mode to Mark:Space which is the standard one
+            pwmSetMode(PWM_MODE_MS);
+            // Set clock and range prefactor to be as Arduino (tweak frequency)
+            pwmSetClock(HARD_PWM_CLOCK);
+            pwmSetRange(HARD_PWM_RANGE);
+        }
+
     }
 
     Servo::~Servo(void) {
@@ -60,6 +72,12 @@ namespace servo {
         : Servo(pin, is_hard_pwm), speed_(0), stop_value_(stop_value), full_forward_value_(full_forward_value)
     {
         // Empty on purpose
+    }
+
+
+    ContinuousServo::~ContinuousServo(void)
+    {
+        setSpeed(0.0F);
     }
 
 

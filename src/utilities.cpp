@@ -19,4 +19,15 @@ namespace utilities {
             return value;
         }
     }
+
+    void trim(std::string &s)
+    {
+        size_t p = s.find_first_not_of(" \t\n");
+        s.erase(0, p);
+
+        p = s.find_last_not_of(" \t\n");
+        if (std::string::npos != p) {
+            s.erase(p + 1);
+        }
+    }
 }  // namespace utilities

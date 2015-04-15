@@ -12,6 +12,10 @@ namespace udpserver {
         // Create a socket
         sock_ = socket(AF_INET, SOCK_DGRAM, 0);
 
+        if (-1 == sock_) {
+            std::cerr << "[ERROR] Unable to create a socket." << std::endl;
+        }
+
         // Listen on any interface on specified port
         struct sockaddr_in server_addr;
         server_addr.sin_family = AF_INET;

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "constants.hpp"
+#include "utilities.hpp"
 
 
 namespace robot {
@@ -28,13 +29,20 @@ namespace robot {
         // Empty on purpose
     }
 
-    void Robot::move(const float distance_forward, const float turn) {
-        // TODO
+    Robot::~Robot(void)
+    {
+        // Stop the robot when destroying the Robot object
+        stop();
+    }
+
+    void Robot::move(const float speed) {
+        left_wheel_.setSpeed(speed);
+        right_wheel_.setSpeed(speed);
     }
 
     void Robot::stop(void) {
-        left_wheel_.setSpeed(0);
-        right_wheel_.setSpeed(0);
+        left_wheel_.setSpeed(0.0F);
+        right_wheel_.setSpeed(0.0F);
     }
 
     void Robot::lookAt(void) {
@@ -42,26 +50,31 @@ namespace robot {
     }
 
     void Robot::listen(void) {
-        std::string command = server_.poll();
+        bool running = true;
+        while (running) {
+            std::string command = server_.poll();
 
-        if (command == "") {
-            std::cerr << "[ERROR] RECV error." << std::endl;
-            return;
-        }
+            if (command == "") {
+                std::cerr << "[ERROR] RECV error." << std::endl;
+                return;
+            }
 
-        std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
+            utilities::trim(command);
+            std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
-        // TODO
-        if ("FORWARD" == command) {
-        }
-        else if ("BACKWARD" == command) {
-        }
-        else if ("STOP" == command) {
-            stop();
-        }
-        else if ("KILL" == command) {
-            // Raise SIGINT, catched by the main thread, to exit the loop in the main thread
-            std::raise(SIGINT);
+            if ("FORWARD" == command) {
+                move(1.0F);
+            }
+            else if ("BACKWARD" == command) {
+                // TODO: Not working
+                move(-1.0F);
+            }
+            else if ("STOP" == command) {
+                stop();
+            }
+            else if ("KILL" == command) {
+                running = false;
+            }
         }
     }
 }

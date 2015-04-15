@@ -1,5 +1,6 @@
 namespace servo {
     const int DEFAULT_RANGE_SOFT_PWM = 100;
+    const int HARD_PWM_CLOCK = 375;
     const int HARD_PWM_RANGE = 1024;
 
 
@@ -71,6 +72,11 @@ namespace servo {
             * @remark full_forward_value and stop_value must take into account the PWM range!
             */
             ContinuousServo(const int pin, const int stop_value, const int full_forward_value, const bool is_hard_pwm);
+
+            /**
+            * Stop the servo on destruction.
+            */
+            ~ContinuousServo(void);
 
             /**
             * Get the current servo speed.

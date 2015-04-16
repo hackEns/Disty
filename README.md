@@ -16,6 +16,13 @@ This repo contains all the drawings and code we used to make it work.
 * Makethe code: `make`
 
 
+## Easy test
+
+* Run the program: `cd build; ./disty`.
+* The server is now listening for commands. Available commands can be found in `Robot::listen`. These are `FORWARD`, `BACKWARD`, `STOP` and `KILL`.
+* You can use `netcat` on the RaspberryPi to send UDP commands to test it: `nc -u localhost 4242`.
+
+
 ## License
 
 All the source code we wrote is under a `no-alcohol beer-ware license`.

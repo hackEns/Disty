@@ -35,9 +35,10 @@ namespace robot {
         stop();
     }
 
-    void Robot::move(const float speed) {
-        left_wheel_.setSpeed(-speed);
-        right_wheel_.setSpeed(speed);
+    void Robot::move(float speed) {
+        speed = utilities::clamp(speed, -constants::MAX_SPEED, constants::MAX_SPEED);
+        left_wheel_.setSpeed(-speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        right_wheel_.setSpeed(speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
     }
 
     void Robot::stop(void) {
@@ -63,11 +64,10 @@ namespace robot {
             std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
             if ("FORWARD" == command) {
-                move(1.0F);
+                move(1.0F);  // Speed is truncated to MAX_SPEED in move method
             }
             else if ("BACKWARD" == command) {
-                // TODO: Not working
-                move(-1.0F);
+                move(-1.0F);  // Speed is truncated to MAX_SPEED in move method
             }
             else if ("STOP" == command) {
                 stop();

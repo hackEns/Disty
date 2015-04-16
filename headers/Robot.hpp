@@ -11,7 +11,7 @@ namespace robot {
             ~Robot(void);
 
             /** Move the robot. */
-            void move(const float speed);
+            void move(float speed);
 
             /** Stop moving. */
             void stop(void);

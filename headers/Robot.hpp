@@ -16,8 +16,9 @@ namespace robot {
             /** Stop moving. */
             void stop(void);
 
-            /** Look at the specified point. */
-            void lookAt(void);
+            /** Look at the specified point.
+             * @param angle  an angle between CAMERA_HOLDER_LOW_STOP and CAMERA_HOLDER_HIGH_STOP */
+            void lookAt(int angle);
 
             /** Listen for and handle the commands received through the UDPServer. */
             void listen(void);

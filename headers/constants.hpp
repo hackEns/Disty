@@ -8,9 +8,9 @@ namespace constants {
     const int CONTINUOUS_SERVO_FULL_FORWARD_VALUE = 155;
 
     // Minimum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MIN_VALUE = -1;  // TODO
+    const int STANDARD_SERVO_MIN_VALUE = 78;
     // Maximum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MAX_VALUE = -1;  // TODO
+    const int STANDARD_SERVO_MAX_VALUE = 155;
 
     // Pin of the left wheel, Broadcom numbering
     const int LEFT_WHEEL_PIN = 18;
@@ -29,9 +29,13 @@ namespace constants {
     const float RIGHT_WHEEL_REDUCTION_FACTOR = 1.0F;
 
     // Pin for the camera holder, Broadcom numbering
-    const int CAMERA_HOLDER_PIN = -1;  // TODO
+    const int CAMERA_HOLDER_PIN = 17;
     // Whether this pin is a hard PMW or not
     const bool CAMERA_HOLDER_IS_HARD_PWM = false;
+    // Software low stop for the camera holder
+    const int CAMERA_HOLDER_LOW_STOP = 0;
+    // Software high stop for the camera holder
+    const int CAMERA_HOLDER_HIGH_STOP = 180;
 
     // UDP port to listen on
     const int LISTENING_PORT = 4242;

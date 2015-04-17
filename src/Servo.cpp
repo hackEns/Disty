@@ -10,10 +10,11 @@ namespace servo {
     Servo::Servo(const int pin, const bool is_hard_pwm)
         : pin_(pin), range_(HARD_PWM_RANGE), is_hard_pwm_(is_hard_pwm) {
         if (!is_hard_pwm) {
+            range_ = DEFAULT_RANGE_SOFT_PWM;
+            pinMode(pin, OUTPUT);
             if (0 != softPwmCreate(pin, 0, range_)) {
                 throw std::runtime_error("Unable to initialize Servo.");
             }
-            range_ = DEFAULT_RANGE_SOFT_PWM;
         }
         else {
             // Set pin as PWM pin
@@ -52,6 +53,7 @@ namespace servo {
 
 
     void StandardServo::setPosition(const int position) {
+        // TODO
         const int value = static_cast<int>(utilities::clamp(
                 ((position - min_angle_) /
                  (max_angle_ - min_angle_) *

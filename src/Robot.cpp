@@ -26,7 +26,8 @@ namespace robot {
                 constants::CAMERA_HOLDER_IS_HARD_PWM),
         server_(constants::LISTENING_PORT)
     {
-        // Empty on purpose
+       // Init the camera holder
+       camera_holder_.setPosition(90);
     }
 
     Robot::~Robot(void)
@@ -46,8 +47,9 @@ namespace robot {
         right_wheel_.setSpeed(0.0F);
     }
 
-    void Robot::lookAt(void) {
-        // TODO
+    void Robot::lookAt(int angle) {
+        angle = utilities::clamp(angle, constants::CAMERA_HOLDER_LOW_STOP, constants::CAMERA_HOLDER_HIGH_STOP);
+        camera_holder_.setPosition(angle);
     }
 
     void Robot::listen(void) {
@@ -71,6 +73,12 @@ namespace robot {
             }
             else if ("STOP" == command) {
                 stop();
+            }
+            else if ("LOOK UP" == command) {
+                lookAt(camera_holder_.getPosition() + 5);
+            }
+            else if ("LOOK DOWN" == command) {
+                lookAt(camera_holder_.getPosition() - 5);
             }
             else if ("KILL" == command) {
                 running = false;

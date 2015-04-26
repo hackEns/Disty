@@ -31,7 +31,9 @@ namespace servo {
     }
 
     Servo::~Servo(void) {
-        // Empty on purpose
+        // Set the PWM pin as output and write low to be sure to release PWM signal
+        pinMode(pin, OUTPUT);
+        digitalWrite(pin, LOW);
     }
 
 

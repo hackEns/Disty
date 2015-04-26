@@ -2,6 +2,7 @@
 
 #include <csignal>
 #include <iostream>
+#include <vector>
 
 #include "constants.hpp"
 #include "utilities.hpp"
@@ -63,24 +64,44 @@ namespace robot {
             }
 
             utilities::trim(command);
+            std::vector<std::string> command_argv = utilities::split(command, ' ');
             std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
-            if ("FORWARD" == command) {
-                move(1.0F);  // Speed is truncated to MAX_SPEED in move method
-            }
-            else if ("BACKWARD" == command) {
-                move(-1.0F);  // Speed is truncated to MAX_SPEED in move method
-            }
-            else if ("STOP" == command) {
+            if ("FORWARD" == command_argv[0]) {
+                if (commang_argv.size() == 1) {
+                    // No extra argument
+                    move(1.0F);  // Speed is truncated to MAX_SPEED in move method
+                } else {
+                    // Extra argument speed is provided
+                    move(std::stof(commang_argv[1]));
+                }
+            } else if ("BACKWARD" == command_argv[0]) {
+                if (commang_argv.size() == 1) {
+                    // No extra argument
+                    move(-1.0F);  // Speed is truncated to MAX_SPEED in move method
+                } else {
+                    // Extra argument speed is provided
+                    move(std::stof(commang_argv[1]));
+                }
+            } else if ("STOP" == command_argv[0]) {
                 stop();
-            }
-            else if ("LOOK UP" == command) {
-                lookAt(camera_holder_.getPosition() + 5);
-            }
-            else if ("LOOK DOWN" == command) {
-                lookAt(camera_holder_.getPosition() - 5);
-            }
-            else if ("KILL" == command) {
+            } else if ("LOOK" == command_argv[0]) {
+                if ("UP" == command_argv[1]) {
+                    lookAt(camera_holder_.getPosition() + 5);
+                }
+                else if ("DOWN" == command_argv[1]) {
+                    lookAt(camera_holder_.getPosition() - 5);
+                }
+                else if ("AT" == command_argv[1]) {
+                    if (command_argv.size() > 2) {
+                        lookAt(std::stoi(command_argv[2]));
+                    } else {
+                        // Invalid command, do nothing
+                    }
+                } else {
+                    // Invalid command, do nothing
+                }
+            } else if ("KILL" == command_argv[0]) {
                 running = false;
             }
         }

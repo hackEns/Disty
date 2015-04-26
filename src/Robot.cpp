@@ -68,20 +68,20 @@ namespace robot {
             std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
             if ("FORWARD" == command_argv[0]) {
-                if (commang_argv.size() == 1) {
+                if (command_argv.size() == 1) {
                     // No extra argument
                     move(1.0F);  // Speed is truncated to MAX_SPEED in move method
                 } else {
                     // Extra argument speed is provided
-                    move(std::stof(commang_argv[1]));
+                    move(std::stof(command_argv[1]));
                 }
             } else if ("BACKWARD" == command_argv[0]) {
-                if (commang_argv.size() == 1) {
+                if (command_argv.size() == 1) {
                     // No extra argument
                     move(-1.0F);  // Speed is truncated to MAX_SPEED in move method
                 } else {
                     // Extra argument speed is provided
-                    move(std::stof(commang_argv[1]));
+                    move(std::stof(command_argv[1]));
                 }
             } else if ("STOP" == command_argv[0]) {
                 stop();

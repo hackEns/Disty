@@ -1,7 +1,6 @@
 #include "utilities.hpp"
 
 #include <sstream>
-#include <vector>
 
 
 namespace utilities {

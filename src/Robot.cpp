@@ -29,6 +29,8 @@ namespace robot {
     {
        // Init the camera holder
        camera_holder_.setPosition(90);
+
+       stop();
     }
 
     Robot::~Robot(void)
@@ -39,8 +41,8 @@ namespace robot {
 
     void Robot::move(float speed) {
         speed = utilities::clamp(speed, -constants::MAX_SPEED, constants::MAX_SPEED);
-        left_wheel_.setSpeed(-speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
-        right_wheel_.setSpeed(speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        left_wheel_.setSpeed(speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);
     }
 
     void Robot::stop(void) {

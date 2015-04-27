@@ -5,6 +5,7 @@
 #include "Servo.hpp"
 #include "utilities.hpp"
 
+#include <iostream>
 
 namespace servo {
     Servo::Servo(const int pin, const bool is_hard_pwm)
@@ -97,6 +98,7 @@ namespace servo {
                 speed * (full_forward_value_ - stop_value_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
+            std::cout << value << std::endl;
         } else {
             softPwmWrite(pin_, value);
         }

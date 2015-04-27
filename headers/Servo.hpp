@@ -2,8 +2,8 @@ namespace servo {
     const int DEFAULT_RANGE_SOFT_PWM = 50;  // 50Hz
 
     // 20ms for servos
-    const int HARD_PWM_CLOCK = 375;
-    const int HARD_PWM_RANGE = 1024;
+    const int HARD_PWM_CLOCK = 200;
+    const int HARD_PWM_RANGE = 1920;
 
 
     class Servo {

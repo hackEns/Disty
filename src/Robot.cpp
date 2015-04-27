@@ -28,8 +28,9 @@ namespace robot {
         server_(constants::LISTENING_PORT)
     {
        // Init the camera holder
-       camera_holder_.setPosition(90);
+       camera_holder_.setPosition(100);
 
+       // Prevent the robot from moving
        stop();
     }
 
@@ -89,10 +90,10 @@ namespace robot {
                 stop();
             } else if ("LOOK" == command_argv[0]) {
                 if ("UP" == command_argv[1]) {
-                    lookAt(camera_holder_.getPosition() + 5);
+                    lookAt(camera_holder_.getPosition() + 10);
                 }
                 else if ("DOWN" == command_argv[1]) {
-                    lookAt(camera_holder_.getPosition() - 5);
+                    lookAt(camera_holder_.getPosition() - 10);
                 }
                 else if ("AT" == command_argv[1]) {
                     if (command_argv.size() > 2) {

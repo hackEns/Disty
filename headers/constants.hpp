@@ -8,9 +8,9 @@ namespace constants {
     const int CONTINUOUS_SERVO_FULL_FORWARD_VALUE = 155;
 
     // Minimum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MIN_VALUE = 78;
+    const int STANDARD_SERVO_MIN_VALUE = 5;
     // Maximum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MAX_VALUE = 170;
+    const int STANDARD_SERVO_MAX_VALUE = 25;
 
     // Pin of the left wheel, Broadcom numbering
     const int LEFT_WHEEL_PIN = 18;

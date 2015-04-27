@@ -5,7 +5,6 @@
 #include "Servo.hpp"
 #include "utilities.hpp"
 
-#include <iostream>
 
 namespace servo {
     Servo::Servo(const int pin, const bool is_hard_pwm)
@@ -58,11 +57,10 @@ namespace servo {
     void StandardServo::setPosition(const int position) {
         // TODO
         const int value = static_cast<int>(utilities::clamp(
-                ((position - min_angle_) /
-                 (max_angle_ - min_angle_) *
-                 range_),
-                0,
-                range_));
+                (((position / 180.) * (max_angle_ - min_angle_)) +
+                 min_angle_),
+                min_angle_,
+                max_angle_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
         } else {
@@ -98,7 +96,6 @@ namespace servo {
                 speed * (full_forward_value_ - stop_value_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
-            std::cout << value << std::endl;
         } else {
             softPwmWrite(pin_, value);
         }

@@ -1,9 +1,20 @@
 namespace servo {
     const int DEFAULT_RANGE_SOFT_PWM = 50;  // 50Hz
 
-    // 20ms for servos
+    // These constants are computed so that the base frequency is 20ms (for
+    // servos) and the 1.5ms pulse is a valid int multiple. This means:
+    // * 19.2 MHz / (CLOCK * RANGE) = 50Hz (19.2MHz being the base frequency of
+    // the PWM clock in the raspi).
+    // * There exists a valid int such that pwmWrite(pin, INT) is a 1.5ms pulse
+    // (which is the stop position, or middle position for standard servo, and
+    // servos are supposed to be symmetric with respect to this position).
     const int HARD_PWM_CLOCK = 200;
     const int HARD_PWM_RANGE = 1920;
+
+    // The minimum pulse width is 100µs. If we take a range of 100, this gives
+    // us 100 * 100 = 10^4 µs or a frequency of 100Hz. A servo is controlled
+    // with 20ms pulses, or a frequency of 50Hz, then the range is 200.
+    const int SOFT_PWM_RANGE = 200;
 
 
     class Servo {
@@ -35,8 +46,10 @@ namespace servo {
             * Construct a StandardServo object on specified pin.
             *
             * @param[in] pin is the pin on which the servo is attached.
-            * @param[in] min_angle is the min angle of the servo
-            * @param[in] max_angle is the max angle of the servo
+            * @param[in] min_angle is the min angle of the servo, expressed in
+            *            units of PWM range (and *not* in degrees / rads)
+            * @param[in] max_angle is the max angle of the servo, expressed in
+            *            units of PWM range (and *not* in degrees / rads)
             * @param[în] is_hard_pwm defines whether the pwm on the pin is hard or not
             */
             StandardServo(const int pin, const int min_angle, const int max_angle, const bool is_hard_pwm);
@@ -49,7 +62,8 @@ namespace servo {
             /**
             * Move the servo to specified position
             *
-            * @param[in] position is the absolute position, between min and max value.
+            * @param[in] position is the expected position of the servo, in
+            *            degrees between 0 and 180.
             */
             void setPosition(const int position);
         protected:

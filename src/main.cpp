@@ -9,6 +9,8 @@
 #include "constants.hpp"
 #include "Robot.hpp"
 
+
+#include <softPwm.h>
 void exitHandler(int signal) {
     // End exit as the client would do, sending "KILL" to local UDP server
     int sock = socket(AF_INET, SOCK_DGRAM, 0);

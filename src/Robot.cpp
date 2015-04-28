@@ -28,7 +28,10 @@ namespace robot {
         server_(constants::LISTENING_PORT)
     {
        // Init the camera holder
-       camera_holder_.setPosition(90);
+       camera_holder_.setPosition(100);
+
+       // Prevent the robot from moving
+       stop();
     }
 
     Robot::~Robot(void)
@@ -39,8 +42,8 @@ namespace robot {
 
     void Robot::move(float speed) {
         speed = utilities::clamp(speed, -constants::MAX_SPEED, constants::MAX_SPEED);
-        left_wheel_.setSpeed(-speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
-        right_wheel_.setSpeed(speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        left_wheel_.setSpeed(speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);
     }
 
     void Robot::stop(void) {
@@ -68,29 +71,29 @@ namespace robot {
             std::cout << "[INFO] RECV successful, client says:" << command << std::endl;
 
             if ("FORWARD" == command_argv[0]) {
-                if (commang_argv.size() == 1) {
+                if (command_argv.size() == 1) {
                     // No extra argument
                     move(1.0F);  // Speed is truncated to MAX_SPEED in move method
                 } else {
                     // Extra argument speed is provided
-                    move(std::stof(commang_argv[1]));
+                    move(std::stof(command_argv[1]));
                 }
             } else if ("BACKWARD" == command_argv[0]) {
-                if (commang_argv.size() == 1) {
+                if (command_argv.size() == 1) {
                     // No extra argument
                     move(-1.0F);  // Speed is truncated to MAX_SPEED in move method
                 } else {
                     // Extra argument speed is provided
-                    move(std::stof(commang_argv[1]));
+                    move(std::stof(command_argv[1]));
                 }
             } else if ("STOP" == command_argv[0]) {
                 stop();
             } else if ("LOOK" == command_argv[0]) {
                 if ("UP" == command_argv[1]) {
-                    lookAt(camera_holder_.getPosition() + 5);
+                    lookAt(camera_holder_.getPosition() + 10);
                 }
                 else if ("DOWN" == command_argv[1]) {
-                    lookAt(camera_holder_.getPosition() - 5);
+                    lookAt(camera_holder_.getPosition() - 10);
                 }
                 else if ("AT" == command_argv[1]) {
                     if (command_argv.size() > 2) {

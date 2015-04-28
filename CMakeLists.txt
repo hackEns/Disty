@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
 project (Disty)
 
+add_definitions(-std=gnu++0x)
+
 file (GLOB SRC_FILES "src/*.cpp")
 include_directories ("headers")
 

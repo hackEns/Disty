@@ -3,14 +3,14 @@ namespace constants {
     const float MAX_SPEED = 1.0F;
 
     // Stop value used in PWM to stop the continuous servo
-    const int CONTINUOUS_SERVO_STOP_VALUE = 78;
+    const int CONTINUOUS_SERVO_STOP_VALUE = 141;
     // Value to send to PWM to go full forward
     const int CONTINUOUS_SERVO_FULL_FORWARD_VALUE = 155;
 
     // Minimum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MIN_VALUE = 78;
+    const int STANDARD_SERVO_MIN_VALUE = 5;
     // Maximum position for a standard servo, as PWM
-    const int STANDARD_SERVO_MAX_VALUE = 155;
+    const int STANDARD_SERVO_MAX_VALUE = 25;
 
     // Pin of the left wheel, Broadcom numbering
     const int LEFT_WHEEL_PIN = 18;

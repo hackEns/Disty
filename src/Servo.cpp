@@ -32,8 +32,8 @@ namespace servo {
 
     Servo::~Servo(void) {
         // Set the PWM pin as output and write low to be sure to release PWM signal
-        pinMode(pin, OUTPUT);
-        digitalWrite(pin, LOW);
+        pinMode(pin_, OUTPUT);
+        digitalWrite(pin_, LOW);
     }
 
 
@@ -57,11 +57,10 @@ namespace servo {
     void StandardServo::setPosition(const int position) {
         // TODO
         const int value = static_cast<int>(utilities::clamp(
-                ((position - min_angle_) /
-                 (max_angle_ - min_angle_) *
-                 range_),
-                0,
-                range_));
+                (((position / 180.) * (max_angle_ - min_angle_)) +
+                 min_angle_),
+                min_angle_,
+                max_angle_));
         if (is_hard_pwm_) {
             pwmWrite(pin_, value);
         } else {

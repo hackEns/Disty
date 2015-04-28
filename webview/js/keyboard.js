@@ -1,6 +1,6 @@
 // EDIT: Edit this according to your needs
 var config = {
-    "server": "localhost",
+    "server": "disty",
     "port": 80
 };
 

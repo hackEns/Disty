@@ -6,21 +6,21 @@ var config = {
 
 
 // Websocket handler
-var ws = new WebSocket("ws://"+config["server"]+":"+config["port"], ['binary', 'base64']);
-ws.onopen = function(evt) {
+var keyboard_ws = new WebSocket("ws://"+config["server"]+":"+config["port"], ['binary', 'base64']);
+keyboard_ws.onopen = function(evt) {
     document.getElementById("move").innerHTML = "Waiting for commands…";
 };
 
-ws.onmessage = function(evt) {
+keyboard_ws.onmessage = function(evt) {
     // Not implemented as we should not receive messages
 };
 
-ws.onclose = function(evt) {
+keyboard_ws.onclose = function(evt) {
     // Alert the user that connection has been lost
     alert("Connection closed.");
 };
 
-ws.onerror = function(evt) {
+keyboard_ws.onerror = function(evt) {
     // Alert the user of encountered errors
     alert("WebSocket error: " + evt.data)
 };
@@ -39,22 +39,22 @@ function handleMove(e) {
 
     switch (ev.key) {
         case "z":
-            ws.send("FORWARD");
+            keyboard_ws.send("FORWARD");
             break;
         case "s":
-            ws.send("BACKWARD");
+            keyboard_ws.send("BACKWARD");
             break;
         case "q":
-            ws.send("TURN LEFT");
+            keyboard_ws.send("TURN LEFT");
             break;
         case "d":
-            ws.send("TURN RIGHT");
+            keyboard_ws.send("TURN RIGHT");
             break;
         case "ArrowUp":
-            ws.send("LOOK UP");
+            keyboard_ws.send("LOOK UP");
             break;
         case "ArrowDown":
-            ws.send("LOOK DOWN");
+            keyboard_ws.send("LOOK DOWN");
             break;
         default:
             return;
@@ -71,7 +71,7 @@ function handleMove(e) {
 function handleStop(e) {
     var ev = e || window.event;
 
-    ws.send("STOP");
+    keyboard_ws.send("STOP");
 
     _prevKeyDown[ev.key] = false;
 }

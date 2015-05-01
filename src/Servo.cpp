@@ -42,6 +42,13 @@ namespace servo {
     }
 
 
+    void Servo::writeZeroSoftPWM(void) {
+        if (!is_hard_pwm_) {
+            softPwmWrite(pin_, 0);
+        }
+    }
+
+
     StandardServo::StandardServo(const int pin, const int min_angle, int max_angle, bool is_hard_pwm)
         : Servo(pin, is_hard_pwm), position_(0), min_angle_(min_angle), max_angle_(max_angle)
     {

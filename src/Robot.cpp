@@ -1,6 +1,7 @@
 #include "Robot.hpp"
 
 #include <csignal>
+#include <ctime>
 #include <iostream>
 #include <vector>
 
@@ -30,6 +31,9 @@ namespace robot {
        // Init the camera holder
        camera_holder_.setPosition(100);
 
+       sleep(1);
+       camera_holder_.writeZeroSoftPWM();
+
        // Prevent the robot from moving
        stop();
     }
@@ -49,6 +53,7 @@ namespace robot {
     void Robot::stop(void) {
         left_wheel_.setSpeed(0.0F);
         right_wheel_.setSpeed(0.0F);
+        camera_holder_.writeZeroSoftPWM();
     }
 
     void Robot::lookAt(int angle) {

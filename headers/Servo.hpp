@@ -32,6 +32,12 @@ namespace servo {
             * Get the pin on which the servo is attached.
             */
             int getPin(void) const;
+
+            /**
+             * Write zero to the soft PWM. Used for preventing
+             * servo jittering once target is reached.
+             */
+            void writeZeroSoftPWM(void);
         protected:
             int pin_;  /** Servo pin. */
             int range_;  /** Internal range for the PWM. */

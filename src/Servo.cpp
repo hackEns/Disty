@@ -82,7 +82,7 @@ namespace servo {
             utilities::millisleep(std::max(delay_milliseconds, 10));  // 10ms is the time taken by a PWM cycle of wiringPi
             // Stop the soft PWM signal, to prevent jittering. The servo should
             // hold its position.
-            //softPwmWrite(pin_, 0);
+            softPwmWrite(pin_, 0);
 
         }
         position_ = position;

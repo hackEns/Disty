@@ -13,6 +13,13 @@ namespace robot {
             /** Move the robot. */
             void move(float speed);
 
+            /**
+             * Turn the robot on itself.
+             *
+             * Positive speed make it turn counter-clockwise.
+             */
+            void turn(float speed);
+
             /** Stop moving. */
             void stop(void);
 

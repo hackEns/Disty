@@ -50,7 +50,7 @@ namespace utilities {
 
 
     void millisleep(int milliseconds) {
-        struct timespec t;
+        struct timespec t = {};
         t.tv_nsec = milliseconds * 1000000;
         nanosleep(&t, NULL);
     }

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <stdexcept>
 #include <wiringPi.h>
@@ -73,14 +74,15 @@ namespace servo {
         } else {
             softPwmWrite(pin_, value);
             // Let the servo move, based on the passed average speed.
-            utilities::millisleep(static_cast<int>(
-                        std::abs(position_ - position) /
-                        360.0f /
-                        average_speed_ *
-                        1000));
+            int delay_milliseconds = static_cast<int>(
+                    std::abs(position_ - position) /
+                    360.0f /
+                    average_speed_ *
+                    1000);
+            utilities::millisleep(std::max(delay_milliseconds, 10));  // 10ms is the time taken by a PWM cycle of wiringPi
             // Stop the soft PWM signal, to prevent jittering. The servo should
             // hold its position.
-            softPwmWrite(pin_, 0);
+            //softPwmWrite(pin_, 0);
 
         }
         position_ = position;

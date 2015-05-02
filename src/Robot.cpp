@@ -34,6 +34,9 @@ namespace robot {
 
        // Prevent the robot from moving
        stop();
+
+       // Ready to operate
+       std::cout << "Disty is ready." << std::endl;
     }
 
     Robot::~Robot(void)

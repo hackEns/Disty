@@ -56,9 +56,12 @@ namespace servo {
             *            units of PWM range (and *not* in degrees / rads)
             * @param[in] max_angle is the max angle of the servo, expressed in
             *            units of PWM range (and *not* in degrees / rads)
+            * @param[in] average_speed is the average speed of the servo in
+            *            rounds per seconds. Used when software PWM is used, to
+            *            prevent jittering.
             * @param[în] is_hard_pwm defines whether the pwm on the pin is hard or not
             */
-            StandardServo(const int pin, const int min_angle, const int max_angle, const bool is_hard_pwm);
+            StandardServo(const int pin, const int min_angle, const int max_angle, const float average_speed, const bool is_hard_pwm);
 
             /**
             * Get the current servo position.
@@ -77,6 +80,7 @@ namespace servo {
             int position_;  /** Position of the servo. */
             int min_angle_;  /** Minimal angle of the servo. */
             int max_angle_;  /** Maximal angle of the servo. */
+            float average_speed_;  /** Average speed of the servo, in rounds per seconds. */
     };
 
 

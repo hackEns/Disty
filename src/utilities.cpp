@@ -1,5 +1,6 @@
 #include "utilities.hpp"
 
+#include <ctime>
 #include <sstream>
 
 
@@ -22,6 +23,7 @@ namespace utilities {
         }
     }
 
+
     void trim(std::string &s)
     {
         size_t p = s.find_first_not_of(" \t\n");
@@ -33,6 +35,7 @@ namespace utilities {
         }
     }
 
+
     std::vector<std::string> split(const std::string &s, char delimiter) {
         std::vector<std::string> tokens;
 
@@ -43,5 +46,12 @@ namespace utilities {
         }
 
         return tokens;
+    }
+
+
+    void millisleep(int milliseconds) {
+        struct timespec t;
+        t.tv_nsec = milliseconds * 1000000;
+        nanosleep(&t, NULL);
     }
 }  // namespace utilities

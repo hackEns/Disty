@@ -25,14 +25,12 @@ namespace robot {
                 constants::CAMERA_HOLDER_PIN,
                 constants::STANDARD_SERVO_MIN_VALUE,
                 constants::STANDARD_SERVO_MAX_VALUE,
+                constants::STANDARD_SERVO_SPEED,
                 constants::CAMERA_HOLDER_IS_HARD_PWM),
         server_(constants::LISTENING_PORT)
     {
        // Init the camera holder
        camera_holder_.setPosition(100);
-
-       sleep(1);
-       camera_holder_.writeZeroSoftPWM();
 
        // Prevent the robot from moving
        stop();

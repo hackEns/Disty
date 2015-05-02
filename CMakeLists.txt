@@ -7,4 +7,4 @@ file (GLOB SRC_FILES "src/*.cpp")
 include_directories ("headers")
 
 add_executable (disty ${SRC_FILES})
-target_link_libraries(disty wiringPi)
+target_link_libraries(disty m wiringPi)

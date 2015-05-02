@@ -1,3 +1,4 @@
+#include <cmath>
 #include <stdexcept>
 #include <wiringPi.h>
 #include <softPwm.h>
@@ -49,8 +50,8 @@ namespace servo {
     }
 
 
-    StandardServo::StandardServo(const int pin, const int min_angle, int max_angle, bool is_hard_pwm)
-        : Servo(pin, is_hard_pwm), position_(0), min_angle_(min_angle), max_angle_(max_angle)
+    StandardServo::StandardServo(const int pin, const int min_angle, int max_angle, float average_speed, bool is_hard_pwm)
+        : Servo(pin, is_hard_pwm), position_(0), min_angle_(min_angle), max_angle_(max_angle), average_speed_(average_speed)
     {
         // Empty on purpose
     }
@@ -62,7 +63,6 @@ namespace servo {
 
 
     void StandardServo::setPosition(const int position) {
-        // TODO
         const int value = static_cast<int>(utilities::clamp(
                 (((position / 180.) * (max_angle_ - min_angle_)) +
                  min_angle_),
@@ -72,6 +72,16 @@ namespace servo {
             pwmWrite(pin_, value);
         } else {
             softPwmWrite(pin_, value);
+            // Let the servo move, based on the passed average speed.
+            utilities::millisleep(static_cast<int>(
+                        std::abs(position_ - position) /
+                        360.0f /
+                        average_speed_ *
+                        1000));
+            // Stop the soft PWM signal, to prevent jittering. The servo should
+            // hold its position.
+            softPwmWrite(pin_, 0);
+
         }
         position_ = position;
     }

@@ -18,4 +18,10 @@ namespace utilities {
      * Does not pass empty tokens.
      */
     std::vector<std::string> split(const std::string &s, char delimiter);
+
+
+    /**
+     * Sleep for the given amount of milliseconds.
+     */
+    void millisleep(int milliseconds);
 }  // namespace utilities

@@ -11,6 +11,9 @@ namespace constants {
     const int STANDARD_SERVO_MIN_VALUE = 5;
     // Maximum position for a standard servo, as PWM
     const int STANDARD_SERVO_MAX_VALUE = 25;
+    // Average standard servo speed, used when using software PWM to prevent
+    // jittering. This value is in rounds per seconds.
+    const float STANDARD_SERVO_SPEED = 0.75;
 
     // Pin of the left wheel, Broadcom numbering
     const int LEFT_WHEEL_PIN = 18;

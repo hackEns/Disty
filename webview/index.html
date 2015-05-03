@@ -3,7 +3,19 @@
 <html>
     <head>
         <title>UV4L WebRTC</title>
+        <meta charset="utf-8" />
         <script type="text/javascript" src="js/uv4l_webrtc.js"></script>
+        <style>
+            body {
+                font-family: "Open Sans", sans-serif;
+
+                text-align: center;
+            }
+
+            #cheatsheet {
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
         <h1>Disty remote viewing</h1>
@@ -14,13 +26,25 @@
                 </video>
             </div>
         </div>
-        <!-- EDIT: Edit this according to your setup (this server is provided by uv4l driver, you should just replace disty by your raspi IP address if needed) -->
-        Signalling Server Address: <input type="text" id="signalling_server" value="disty:8080" title="<host>:<port>, default address is autodetected"/><br>
-        <button id="start" onclick="start();">Start</button>
-        <button disabled id="stop" onclick="stop();">Stop</button>
-        <button id="mute" onclick="mute();">Mute/Unmute</button>
-        <button id="fullscreen" onclick="fullscreen();">Fullscreen</button>
+
+        <nav>
+            <!-- EDIT: Edit this according to your setup (this server is provided by uv4l driver, you should just replace disty by your raspi IP address if needed) -->
+            Signalling Server Address: <input type="text" id="signalling_server" value="disty:8080" title="<host>:<port>, default address is autodetected"/><br>
+            <button id="start" onclick="start();">Start</button>
+            <button disabled id="stop" onclick="stop();">Stop</button>
+            <button id="mute" onclick="mute();">Mute/Unmute</button>
+            <button id="fullscreen" onclick="fullscreen();">Fullscreen</button>
+        </nav>
+
         <p id="move">Not connected</p>
+
+        <div id="cheatsheet">
+            <h2>Commands cheatsheet:</h2>
+            <ul>
+                <li>Use Z, S, Q, D to move Disty.</li>
+                <li>Use Up / Down arrows to change camera orientation.</li>
+            </ul>
+        </div>
         <script type="text/javascript" src="js/keyboard.js"></script>
     </body>
 </html>

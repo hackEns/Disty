@@ -40,21 +40,27 @@ function handleMove(e) {
     switch (ev.key) {
         case "z":
             keyboard_ws.send("FORWARD");
+            document.getElementById("move").innerHTML = "Moving forward";
             break;
         case "s":
             keyboard_ws.send("BACKWARD");
+            document.getElementById("move").innerHTML = "Moving backward";
             break;
         case "q":
             keyboard_ws.send("TURN LEFT");
+            document.getElementById("move").innerHTML = "Turning left";
             break;
         case "d":
             keyboard_ws.send("TURN RIGHT");
+            document.getElementById("move").innerHTML = "Turning right";
             break;
         case "ArrowUp":
             keyboard_ws.send("LOOK UP");
+            document.getElementById("move").innerHTML = "Look up";
             break;
         case "ArrowDown":
             keyboard_ws.send("LOOK DOWN");
+            document.getElementById("move").innerHTML = "Look down";
             break;
         default:
             return;
@@ -72,6 +78,7 @@ function handleStop(e) {
     var ev = e || window.event;
 
     keyboard_ws.send("STOP");
+    document.getElementById("move").innerHTML = "Waiting for commands…";
 
     _prevKeyDown[ev.key] = false;
 }

@@ -51,6 +51,13 @@ namespace robot {
         right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);
     }
 
+    void turn(float speed) {
+        speed = utilities::clamp(speed, -constants::MAX_SPEED, constants::MAX_SPEED);
+        left_wheel_.setSpeed(-speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
+        right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);
+    }
+
+
     void Robot::stop(void) {
         left_wheel_.setSpeed(0.0F);
         right_wheel_.setSpeed(0.0F);
@@ -91,6 +98,20 @@ namespace robot {
                 } else {
                     // Extra argument speed is provided
                     move(std::stof(command_argv[1]));
+                }
+            } else if ("TURN" == command_argv[0]) {
+                if (command_argv.size() == 1) {
+                    // No extra argument, turn left at full speed
+                    turn(1.0F);
+                } else {
+                    if ("LEFT" == command_argv[1]) {
+                        turn(1.0F);
+                    } else if ("RIGHT" == command_argv[1]) {
+                        turn(-1.0F);
+                    } else {
+                        // Use provided speed argument
+                        turn(std::stof(command_argv[1]));
+                    }
                 }
             } else if ("STOP" == command_argv[0]) {
                 stop();

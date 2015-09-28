@@ -1,31 +1,34 @@
 Disty
 =====
 
-Disty is a [hackEns](http://hackens.org) project aiming at building a low-cost telepresence robot for videoconference.
+Disty is a [hackEns](http://hackens.org) project by [Phyks](http://phyks.me)
+and [Elie](http://exppad.com/) aiming at building a low-cost telepresence robot
+for videoconference.
 
-More infos can be found on the [project page](http://hackens.org/disty).
+More infos can be found on the [project page](http://hackens.org/disty) (in
+French). The README and the source code is another good source of
+documentation, which should be self-explanatory, in English.
 
 This repo contains all the drawings and code we used to make it work.
 
+![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/screenshot.png))
 
-## Build the software
+## Content of this repo
 
-* Checkout this Git repository: `git checkout https://git.eleves.ens.fr/hackens/Disty.git`
-* Create a `build` directory in the project root.
-* Use CMake to generate Makefiles: `cd build; cmake ..`
-* Makethe code: `make`
+* `blueprints` contains all the blueprints and drawings for this project.
+* `disty` contains the main C++ code, responsible for handling Disty movements
+  and basic operations.
+* `webview` contains the code for the webview, which is the web interface used
+  to control Disty and display camera (for the remote user).
 
-
-## Easy test
-
-* Run the program: `cd build; sudo ./disty`.
-* The server is now listening for commands. Available commands can be found in `Robot::listen`. These are `FORWARD`, `BACKWARD`, `STOP` and `KILL`.
-* You can use `netcat` on the RaspberryPi to send UDP commands to test it: `nc -u localhost 4242`.
-
+Note that these folders also contain useful READMEs with more detailed
+information on them.
 
 ## License
 
-All the source code we wrote is under a `no-alcohol beer-ware license`.
+All the source code we wrote is under a `no-alcohol beer-ware license`, under
+otherwise specified.
+
 ```
 * --------------------------------------------------------------------------------
 * "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):

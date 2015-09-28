@@ -17,12 +17,12 @@ keyboard_ws.onmessage = function(evt) {
 
 keyboard_ws.onclose = function(evt) {
     // Alert the user that connection has been lost
-    alert("Connection closed.");
+    alert("Connection closed: " + evt.code + " - " + evt.reason);
 };
 
 keyboard_ws.onerror = function(evt) {
     // Alert the user of encountered errors
-    alert("WebSocket error: " + evt.data)
+    alert("WebSocket error.");
 };
 
 
@@ -32,33 +32,34 @@ _prevKeyDown = {}  // Store keys currently pressed
 
 function handleMove(e) {
     var ev = e || window.event;
+    ev.preventDefault();
 
     if (_prevKeyDown[ev.key] == true) {  // Avoid multiple presses
         return;
     }
 
-    switch (ev.key) {
-        case "z":
+    switch (ev.keyCode) {
+        case 73:  // "i"
             keyboard_ws.send("FORWARD");
             document.getElementById("move").innerHTML = "Moving forward";
             break;
-        case "s":
+        case 75:  // "k"
             keyboard_ws.send("BACKWARD");
             document.getElementById("move").innerHTML = "Moving backward";
             break;
-        case "q":
+        case 74:  // "j"
             keyboard_ws.send("TURN LEFT");
             document.getElementById("move").innerHTML = "Turning left";
             break;
-        case "d":
+        case 76:  // "l"
             keyboard_ws.send("TURN RIGHT");
             document.getElementById("move").innerHTML = "Turning right";
             break;
-        case "ArrowUp":
+        case 38:  // "Up"
             keyboard_ws.send("LOOK UP");
             document.getElementById("move").innerHTML = "Look up";
             break;
-        case "ArrowDown":
+        case 40:  // "Down"
             keyboard_ws.send("LOOK DOWN");
             document.getElementById("move").innerHTML = "Look down";
             break;

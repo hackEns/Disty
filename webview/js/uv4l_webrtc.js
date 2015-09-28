@@ -1,7 +1,10 @@
 var ws = null;
 var pc;
 var pcConfig = {"iceServers": [
-    {url: "stun:disty:3478"}  // EDIT: Edit this according to your setup (this server is provided by uv4l driver, you should just replace disty by your raspi IP address if needed)
+    // The following address is used to initiate the P2P connection (link the two clients). Search the web for STUN servers for more details.
+    // The following address is a public STUN server provided by Google, taken from https://gist.github.com/zziuni/3741933.
+    // If you are only using Disty from within your local network, or serving it through a public internet accessible IP, you can use "stun:disty:3478" (providing disty resolves to Disty).
+    {url: "stun:stun.l.google.com:19302" }
 ]};
 var pcOptions = {
     optional: [

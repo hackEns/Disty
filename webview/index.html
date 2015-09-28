@@ -28,7 +28,7 @@
         </div>
 
         <nav>
-            <!-- EDIT: Edit this according to your setup (this server is provided by uv4l driver, you should just replace disty by your raspi IP address if needed) -->
+            <!-- Edit this according to your setup (this server is provided by uv4l driver, disty should resolve to your raspberry pi for this to work as is). This is used by WebRTC to initiate connection, in complement with the STUN server. Read more on WebRTC for extra details. -->
             Signalling Server Address: <input type="text" id="signalling_server" value="disty:8080" title="<host>:<port>, default address is autodetected"/><br>
             <button id="start" onclick="start();">Start</button>
             <button disabled id="stop" onclick="stop();">Stop</button>

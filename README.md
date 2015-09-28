@@ -11,7 +11,7 @@ documentation, which should be self-explanatory, in English.
 
 This repo contains all the drawings and code we used to make it work.
 
-![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/screenshot.png))
+![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/screenshot.png)
 
 ## Content of this repo
 

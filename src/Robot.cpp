@@ -51,7 +51,7 @@ namespace robot {
         right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);
     }
 
-    void turn(float speed) {
+    void Robot::turn(float speed) {
         speed = utilities::clamp(speed, -constants::MAX_SPEED, constants::MAX_SPEED);
         left_wheel_.setSpeed(-speed * constants::LEFT_WHEEL_REDUCTION_FACTOR);
         right_wheel_.setSpeed(-speed * constants::RIGHT_WHEEL_REDUCTION_FACTOR);

@@ -24,6 +24,12 @@ This repo contains all the drawings and code we used to make it work.
 Note that these folders also contain useful READMEs with more detailed
 information on them.
 
+Blueprints are either in `eps` (ready to cut files) or `svg` (working files).
+
+The Camera case was found on Thingiverse and is not from us, but we cannot find
+the exact object on Thingiverse, to give credit to the author =( Hopefully, we
+will find it and will add it in the future. We are truly sorry about his…
+
 ## License
 
 All the source code we wrote is under a `no-alcohol beer-ware license`, under

@@ -37,6 +37,10 @@ _prevKeyDown = {}  // Store keys currently pressed
 
 function handleMove(e) {
     var ev = e || window.event;
+    var modifiers = (ev.altKey || ev.ctrlKey || ev.shiftKey);
+    if (modifiers) {
+        return;
+    }
 
     if (!ready) {
         // If not ready, forget about handling keypresses

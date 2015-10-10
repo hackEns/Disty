@@ -13,6 +13,8 @@ This repo contains all the drawings and code we used to make it work.
 
 ![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/doc/screenshot.png)
 
+<hr/>
+
 ![3D model](https://raw.githubusercontent.com/hackEns/Disty/master/doc/3Dmodel.png)
 
 

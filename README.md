@@ -39,9 +39,9 @@ You should 3D print:
 * the `picam_case_*` files for the camera case (licensed under CC BY SA).
 * `teleprez.blend` is the complete CAO model of the robot in Blender.
 * `camera_servo_holder.stl` is the plastic part to hold the camera servo. You
-need to print it once.
+need to print it once (with a 10,000 scale factor).
 * `wheel_servo_holder.stl` is the plastic part to hold the servos for the
-wheels. You need four of them.
+wheels. You need four of them (with a 10,000 scale factor).
 
 
 ## Wiring

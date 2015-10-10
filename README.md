@@ -11,38 +11,59 @@ documentation, which should be self-explanatory, in English.
 
 This repo contains all the drawings and code we used to make it work.
 
-![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/screenshot.png)
+![Screen capture](https://raw.githubusercontent.com/hackEns/Disty/master/doc/screenshot.png)
+
+![3D model](https://raw.githubusercontent.com/hackEns/Disty/master/doc/3Dmodel.png)
+
 
 ## Content of this repo
 
 * `blueprints` contains all the blueprints and drawings for this project.
 * `disty` contains the main C++ code, responsible for handling Disty movements
-  and basic operations.
+and basic operations.
 * `webview` contains the code for the webview, which is the web interface used
-  to control Disty and display camera (for the remote user).
+to control Disty and display camera (for the remote user).
 
 Note that these folders also contain useful READMEs with more detailed
 information on them.
 
 Blueprints are either in `eps` (ready to cut files) or `svg` (working files).
+These should be the same and both are provided only to ease usage and
+modifications. STL files are ready to print files. They should be included in
+the Blender blend files, for easy modifications.
 
-The Camera case was found on Thingiverse and is not from us, but we cannot find
-the exact object on Thingiverse, to give credit to the author =( Hopefully, we
-will find it and will add it in the future. We are truly sorry about his…
+You should laser cut the `top` and `bottom` files for the two main plates.
+You should 3D print:
+* the `picam_case_*` files for the camera case (licensed under CC BY SA).
+* `teleprez.blend` is the complete CAO model of the robot in Blender.
+* `camera_servo_holder.stl` is the plastic part to hold the camera servo. You
+need to print it once.
+* `wheel_servo_holder.stl` is the plastic part to hold the servos for the
+wheels. You need four of them.
+
+
+## Wiring
+
+![Wiring](https://raw.githubusercontent.com/hackEns/Disty/master/doc/gpio.png)
+
 
 ## License
 
-All the source code we wrote is under a `no-alcohol beer-ware license`, under
-otherwise specified.
+All the source code we wrote is under a beer-ware license, under otherwise specified.
 
-```
-* --------------------------------------------------------------------------------
-* "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
-* Phyks (webmaster@phyks.me) wrote this file. As long as you retain this notice you
-* can do whatever you want with this stuff (and you can also do whatever you want
-* with this stuff without retaining it, but that's not cool...). If we meet some
-* day, and you think this stuff is worth it, you can buy me a <del>beer</del> soda
-* in return.
-*																		hackEns
-* ---------------------------------------------------------------------------------
-```
+    * --------------------------------------------------------------------------------
+    * "THE BEER-WARE LICENSE" (Revision 42):
+    * Phyks and Élie wrote this file. As long as you retain this notice you
+    * can do whatever you want with this stuff (and you can also do whatever you want
+    * with this stuff without retaining it, but that's not cool...). If we meet some
+    * day, and you think this stuff is worth it, you can buy us a beer
+    * in return.
+    *                                                                       hackEns
+    * ---------------------------------------------------------------------------------
+
+If you need a more legally valid license, you can consider Disty to be under an MIT license.
+
+
+## Credits
+
+Thanks https://api.youmagine.com/designs/raspberry-pi-snap-together-camera-case for the camera case (CC BY SA license).

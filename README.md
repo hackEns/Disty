@@ -17,6 +17,15 @@ This repo contains all the drawings and code we used to make it work.
 
 ![3D model](https://raw.githubusercontent.com/hackEns/Disty/master/doc/3Dmodel.png)
 
+<hr/>
+
+![Disty](http://pub.hackens.org/images/disty/disty1.jpg)
+
+![Disty](http://pub.hackens.org/images/disty/disty2.jpg)
+
+![Disty](http://pub.hackens.org/images/disty/disty3.jpg)
+
+
 
 ## Content of this repo
 
